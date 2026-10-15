@@ -1,0 +1,43 @@
+/* SSI Cloud custom CSS (2026-10-15) */
+#open-reasons-use-nextcloud-pdf { display: none !important; }
+a[href*="settings/help"] { display: none !important; }
+.help-wrapper { display: none !important; }
+a[href*="sync-clients"] { display: none !important; }
+#sync-clients { display: none !important; }
+
+/* 深色模式：修正登录页/body 背景 */
+@media (prefers-color-scheme: dark) {
+  body, #body-login { background-color: var(--color-main-background) !important; }
+}
+
+/* SSI 助手弹窗品牌化 */
+.p-dialog.assistant-modal { border-radius: 14px !important; }
+.assistant-bubble__label { color: var(--color-primary-element) !important; }
+.assistant-modal .task-type-select .categorySelected,
+.assistant-modal .task-type-select .button-vue--primary {
+  background-color: var(--color-primary-element) !important;
+  background-image: none !important;
+  color: var(--color-primary-element-text) !important;
+}
+.assistant-modal .task-type-select .button-vue--secondary:hover {
+  border-color: var(--color-primary-element) !important;
+}
+@media (prefers-color-scheme: dark) {
+  .p-dialog.assistant-modal, .assistant-modal--content { background-color: #131a19 !important; }
+  .assistant-modal .app-navigation { background-color: #101615 !important; border-right: 1px solid #1e2a28 !important; }
+  .assistant-modal .rich-contenteditable__input { background-color: #0d1211 !important; border: 1px solid #223330 !important; }
+  .assistant-modal .session-area, .assistant-modal .task-input-output-form { background-color: #131a19 !important; }
+}
+
+/* 首页瘦身：隐藏应用菜单 + 放大公司 logo */
+#header .app-menu { display: none !important; }
+#header .logo.logo-icon {
+  width: 184px !important;
+  height: 42px !important;
+  background-size: contain !important;
+  background-position: left center !important;
+  background-repeat: no-repeat !important;
+}
+
+/* 设置导航精简（降低层级）：隐藏 工作时间 / 流程 */
+a[href="/settings/user/availability"], a[href="/settings/user/workflow"] { display: none !important; }
