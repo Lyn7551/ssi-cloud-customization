@@ -41,5 +41,22 @@ docker exec $C sh -c "sed -i 's/Play sound when a call started (requires Nextclo
 docker exec $C sh -c "sed -i 's/\"Play sound when a call started (requires Nextcloud Talk)\" :/\"Play sound when a call starts\" :/' $NC/apps/notifications/l10n/zh_CN.js $NC/apps/notifications/l10n/zh_CN.json"
 # ⑤ theming productName 正确键名（camelCase）：联合云等 {productName} 占位符全局生效
 docker exec -u www-data $C php $NC/occ config:app:set theming productName --value="SSI Cloud"
+# ⑥ 联合云 en 冠词语法："a {productName}" → "an {productName}"（新建 en l10n，不影响其他语言；UIUX-R5）
+docker exec $C sh -c 'F=/var/www/html/apps/federatedfilesharing/l10n; [ -f $F/en.js ] || cat > $F/en.js <<'"'"'EOF'"'"'
+OC.L10N.register(
+    "federatedfilesharing",
+    {
+    "You can share with anyone who uses a {productName} server or other Open Cloud Mesh (OCM) compatible servers and services! Just put their Federated Cloud ID in the share dialog. It looks like person@cloud.example.com" : "You can share with anyone who uses an {productName} server or other Open Cloud Mesh (OCM) compatible servers and services! Just put their Federated Cloud ID in the share dialog. It looks like person@cloud.example.com",
+    "Share with me via {productName}" : "Share with me via {productName}"
+},
+"nplurals=2; plural=(n != 1);");
+EOF'
+docker exec $C sh -c 'F=/var/www/html/apps/federatedfilesharing/l10n; [ -f $F/en.json ] || cat > $F/en.json <<'"'"'EOF'"'"'
+{ "translations": {
+    "You can share with anyone who uses a {productName} server or other Open Cloud Mesh (OCM) compatible servers and services! Just put their Federated Cloud ID in the share dialog. It looks like person@cloud.example.com" : "You can share with anyone who uses an {productName} server or other Open Cloud Mesh (OCM) compatible servers and services! Just put their Federated Cloud ID in the share dialog. It looks like person@cloud.example.com",
+    "Share with me via {productName}" : "Share with me via {productName}"
+}, "pluralForm": "nplurals=2; plural=(n != 1);" }
+EOF'
+docker exec $C sh -c 'chown www-data:www-data /var/www/html/apps/federatedfilesharing/l10n/en.js /var/www/html/apps/federatedfilesharing/l10n/en.json 2>/dev/null || true'
 
 echo "DONE（opcache validate_timestamps=On 时即时生效）"
