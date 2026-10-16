@@ -55,6 +55,7 @@ assets/             # 品牌资产（logo 等）
 
 - 2026-10-15：初版（theme / custom CSS / 脚本）。
 - 2026-10-16：CSS 同步至线上最终版（深色模式修复 + 助手弹窗精修 v2）；debrand 脚本增补 l10n 数据级修复（改动与线上逐字核对通过、幂等）；新增 `skeleton-ssi/`（用户手册）与 `assets/logo.png`；补全 theming 配置命令。
+- 2026-10-16（UIUX-R1）：CSS 增补——补回「隐 工作时间/流程」（v2 覆盖丢失）、隐共享页社交分享行、隐设置分组英文 caption（NC34 脚本时序问题）；theming 增补正确键名 `productName=SSI Cloud`（camelCase，修复联合云等 {productName} 占位符全局渲染 "Nextcloud"）；debrand 脚本增补：assistant 人工智慧→人工智能、通知设置去 NC Talk 提示（zh 译文+en 编译产物+zh 键名）。线上已验证：通知/共享页 0 残留、7 页 audit 0 命中。
 
 ## 备注
 

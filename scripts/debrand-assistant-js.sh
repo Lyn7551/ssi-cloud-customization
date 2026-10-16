@@ -30,5 +30,16 @@ docker exec $C sh -c "cd $APP && sed -i 's/{taskTypename}/{taskTypeName}/g' l10n
 # ② 缺译补全："Remember this" 中文包缺翻译 → 补 "记住此对话"（幂等：已存在则跳过）
 docker exec $C sh -c "cd $APP && grep -q '记住此对话' l10n/zh_CN.json || sed -i 's/{ \"translations\": {/&\n    \"Remember this\" : \"记住此对话\",/' l10n/zh_CN.json"
 docker exec $C sh -c "cd $APP && grep -q '记住此对话' l10n/zh_CN.js || sed -i '0,/^[[:space:]]*{[[:space:]]*$/s//&\n    \"Remember this\" : \"记住此对话\",/' l10n/zh_CN.js"
+# ③ 大陆用语：人工智慧 → 人工智能（UIUX-R1，zh_TW 包不动）
+docker exec $C sh -c "cd $APP && sed -i 's/人工智慧/人工智能/g' l10n/zh_CN.json l10n/zh_CN.js"
+
+echo "== UIUX-R1 追加：notifications / settings / theming（同纪律，升级后重打）=="
+NC=/var/www/html
+# ④ 通知设置去掉 NC Talk 提示（未装 Talk）：zh 译文 + en 源串（编译产物内）+ zh 键名同步
+docker exec $C sh -c "sed -i 's/通话开始时播放提示音（需要Nextcloud通话应用）/通话开始时播放提示音/g' $NC/apps/notifications/l10n/zh_CN.js $NC/apps/notifications/l10n/zh_CN.json"
+docker exec $C sh -c "sed -i 's/Play sound when a call started (requires Nextcloud Talk)/Play sound when a call starts/g' $NC/apps/notifications/js/notifications-settings.mjs $NC/apps/notifications/js/notifications-admin-settings.mjs"
+docker exec $C sh -c "sed -i 's/\"Play sound when a call started (requires Nextcloud Talk)\" :/\"Play sound when a call starts\" :/' $NC/apps/notifications/l10n/zh_CN.js $NC/apps/notifications/l10n/zh_CN.json"
+# ⑤ theming productName 正确键名（camelCase）：联合云等 {productName} 占位符全局生效
+docker exec -u www-data $C php $NC/occ config:app:set theming productName --value="SSI Cloud"
 
 echo "DONE（opcache validate_timestamps=On 时即时生效）"

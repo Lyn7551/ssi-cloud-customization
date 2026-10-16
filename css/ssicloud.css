@@ -5,6 +5,14 @@ a[href*="settings/help"] { display: none !important; }
 a[href*="sync-clients"] { display: none !important; }
 #sync-clients { display: none !important; }
 
+/* 设置导航精简：隐 工作时间/流程（UIUX-R1 补回，v2 深色修复时整文件覆盖丢失） */
+a[href="/settings/user/availability"], a[href="/settings/user/workflow"] { display: none !important; }
+/* 共享设置：隐藏社交分享行（Bluesky/Facebook/Mastodon/添加到您的网站） */
+.settings-section p.social-button { display: none !important; }
+/* 设置导航分组标题：NC34 脚本时序问题致 caption 恒显示英文（Personal/Administration），隐藏 */
+.app-navigation-caption:has(#settings-personal_section_heading),
+.app-navigation-caption:has(#settings-admin_section_heading) { display: none !important; }
+
 /* 深色模式：修正登录页/body 背景 */
 @media (prefers-color-scheme: dark) {
   body, #body-login { background-color: var(--color-main-background) !important; }
