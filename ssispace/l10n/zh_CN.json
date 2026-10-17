@@ -1,0 +1,16 @@
+{ "translations": {
+	"Spaces" : "空间",
+	"My space" : "我的空间",
+	"Personal files" : "个人文件",
+	"All your files in one place" : "您的所有文件，一处尽览",
+	"Department spaces" : "部门空间",
+	"Team folders you can access, grouped by department" : "您可访问的团队文件夹，按一级部门分组",
+	"No department spaces yet. When your department creates team folders, they will appear here." : "暂无部门空间。部门创建团队文件夹后会显示在这里。",
+	"Could not load spaces. Please refresh the page." : "空间加载失败，请刷新页面重试。",
+	"Shared with me" : "共享给我",
+	"Files and folders others shared with you" : "其他人与您共享的文件和文件夹",
+	"Nothing shared with you yet." : "暂无共享给您的内容。",
+	"Quick access" : "快捷访问",
+	"Recent" : "最近",
+	"Favorites" : "收藏"
+}, "pluralForm": "nplurals=1; plural=0;" }

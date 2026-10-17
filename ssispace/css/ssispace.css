@@ -1,0 +1,145 @@
+/* SSI Cloud "Spaces" page — card list. All colors via NC CSS variables (light/dark automatic). */
+
+.ssispace {
+	max-width: 1100px;
+	margin: 0 auto;
+	padding: 20px 24px 48px;
+}
+
+.ssispace-title {
+	font-size: 24px;
+	font-weight: 700;
+	margin: 8px 0 4px;
+}
+
+.ssispace-section {
+	margin-top: 26px;
+}
+
+.ssispace-section h3 {
+	font-size: 16px;
+	font-weight: 700;
+	margin: 0 0 4px;
+}
+
+.ssispace-section-sub {
+	color: var(--color-text-maxcontrast);
+	font-size: 13px;
+	margin: 0 0 12px;
+}
+
+.ssispace-cards {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+	gap: 14px;
+}
+
+.ssispace-card {
+	display: flex;
+	align-items: flex-start;
+	gap: 12px;
+	padding: 16px;
+	border: 1px solid var(--color-border);
+	border-radius: 16px;
+	background-color: var(--color-main-background);
+	color: var(--color-main-text);
+	text-decoration: none;
+	transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+}
+
+.ssispace-card:hover,
+.ssispace-card:focus-visible {
+	border-color: var(--color-primary-element);
+	box-shadow: 0 4px 16px color-mix(in srgb, var(--color-primary-element) 18%, transparent);
+	transform: translateY(-1px);
+	text-decoration: none;
+	color: var(--color-main-text);
+}
+
+.ssispace-card-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 44px;
+	height: 44px;
+	flex: 0 0 44px;
+	border-radius: 12px;
+	color: var(--color-primary-element);
+	background-color: color-mix(in srgb, var(--color-primary-element) 12%, transparent);
+}
+
+.ssispace-card-body {
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
+	min-width: 0;
+}
+
+.ssispace-card-name {
+	font-weight: 700;
+	font-size: 15px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.ssispace-card-meta {
+	font-size: 12.5px;
+	color: var(--color-text-maxcontrast);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.ssispace-tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	margin-top: 8px;
+}
+
+.ssispace-tag {
+	display: inline-flex;
+	align-items: center;
+	padding: 2px 10px;
+	border-radius: 999px;
+	font-size: 12px;
+	font-weight: 600;
+	color: var(--color-primary-element);
+	background-color: color-mix(in srgb, var(--color-primary-element) 10%, transparent);
+	border: 1px solid color-mix(in srgb, var(--color-primary-element) 30%, transparent);
+	text-decoration: none;
+}
+
+.ssispace-tag:hover,
+.ssispace-tag:focus-visible {
+	background-color: color-mix(in srgb, var(--color-primary-element) 20%, transparent);
+	text-decoration: none;
+}
+
+.ssispace-empty {
+	color: var(--color-text-maxcontrast);
+	font-size: 13.5px;
+	padding: 14px 4px;
+}
+
+.ssispace-skel {
+	height: 78px;
+	border-radius: 16px;
+	background: linear-gradient(90deg,
+		var(--color-background-dark) 25%,
+		var(--color-background-hover) 50%,
+		var(--color-background-dark) 75%);
+	background-size: 200% 100%;
+	animation: ssispace-pulse 1.4s ease infinite;
+}
+
+@keyframes ssispace-pulse {
+	0% { background-position: 200% 0; }
+	100% { background-position: -200% 0; }
+}
+
+@media (max-width: 480px) {
+	.ssispace { padding: 12px 12px 40px; }
+	.ssispace-cards { grid-template-columns: 1fr; }
+}

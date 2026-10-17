@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<info xmlns="http://nextcloud.org/ns" xmlns:php="http://php.net/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <id>ssispace</id>
+    <name>Spaces</name>
+    <summary>SSI Cloud spaces home (card-based spaces list)</summary>
+    <description>Card-based spaces start page: my space, department team folders with sub-team tags, shares with me, quick access.</description>
+    <version>0.1.0</version>
+    <licence>agpl</licence>
+    <author>SSI IT</author>
+    <namespace>SSISpace</namespace>
+    <category>files</category>
+    <dependencies>
+        <nextcloud min-version="30" max-version="34"/>
+        <php min-version="8.1"/>
+    </dependencies>
+    <navigations>
+        <navigation>
+            <name>Spaces</name>
+            <route>ssispace.page.index</route>
+            <icon>app.svg</icon>
+            <order>1</order>
+        </navigation>
+    </navigations>
+</info>
