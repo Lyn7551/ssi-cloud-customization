@@ -63,4 +63,7 @@ docker exec $C sh -c 'F=/var/www/html/apps/federatedfilesharing/l10n; [ -f $F/en
 EOF'
 docker exec $C sh -c 'chown www-data:www-data /var/www/html/apps/federatedfilesharing/l10n/en.js /var/www/html/apps/federatedfilesharing/l10n/en.json 2>/dev/null || true'
 
-echo "DONE（opcache validate_timestamps=On 时即时生效）"
+# ⑧ l10n .json/.js 改动需清 APCu（l10n 解析缓存按进程驻留）：graceful 重启
+docker exec $C apachectl graceful || true
+
+echo "DONE（opcache validate_timestamps=On + apachectl graceful 已清 APCu）"
