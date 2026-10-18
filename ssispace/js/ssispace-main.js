@@ -14,7 +14,8 @@
 		|| document.head.getAttribute('data-user')
 		|| document.body.getAttribute('data-user');
 	var davBase = OC.linkToRemote('dav') + '/files/' + encodeURIComponent(uid);
-	var filesAppBase = OC.getRootPath() + '/index.php/apps/files/files';
+	/* canonical pretty-URL base generated server-side (no hand-rolled index.php paths) */
+	var filesAppBase = document.getElementById('ssispace').getAttribute('data-files-base');
 
 	var PROPFIND_BODY = '<?xml version="1.0"?>'
 		+ '<d:propfind xmlns:d="DAV:" xmlns:nc="http://nextcloud.org/ns">'

@@ -30,6 +30,7 @@ class PageController extends Controller {
 			'urlMySpace' => $this->urlGenerator->linkToRoute('files.view.indexView', ['view' => 'files']),
 			'urlRecent' => $this->urlGenerator->linkToRoute('files.view.indexView', ['view' => 'recent']),
 			'urlFavorites' => $this->urlGenerator->linkToRoute('files.view.indexView', ['view' => 'favorites']),
+			'urlFilesBase' => $this->urlGenerator->linkToRoute('files.view.indexView', ['view' => 'files']),
 		], 'user');
 	}
 }

@@ -5,7 +5,9 @@ declare(strict_types=1);
 /** @var \OCP\IL10N $l */
 
 ?>
-<div id="ssispace" class="ssispace" aria-busy="true">
+<div id="app-content">
+<div id="app-content-wrapper">
+<div id="ssispace" class="ssispace" aria-busy="true" data-files-base="<?php p($_['urlFilesBase']); ?>">
 	<h2 class="ssispace-title"><?php p($l->t('Spaces')); ?></h2>
 
 	<section class="ssispace-section">
@@ -64,4 +66,6 @@ declare(strict_types=1);
 			</a>
 		</div>
 	</section>
+</div>
+</div>
 </div>

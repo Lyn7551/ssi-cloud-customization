@@ -1,6 +1,7 @@
 /* SSI Cloud "Spaces" page — card list. All colors via NC CSS variables (light/dark automatic). */
 
 .ssispace {
+	width: 100%;
 	max-width: 1100px;
 	margin: 0 auto;
 	padding: 20px 24px 48px;
