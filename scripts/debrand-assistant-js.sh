@@ -63,6 +63,26 @@ docker exec $C sh -c 'F=/var/www/html/apps/federatedfilesharing/l10n; [ -f $F/en
 EOF'
 docker exec $C sh -c 'chown www-data:www-data /var/www/html/apps/federatedfilesharing/l10n/en.js /var/www/html/apps/federatedfilesharing/l10n/en.json 2>/dev/null || true'
 
+# ⑨ UIUX-R9：files 侧栏搜索占位符改名（与顶栏统一搜索职责区分）；「自由文本提示」误译修正（lib 域）
+docker exec $C sh -c "python3 - <<'PYEOF'
+import io
+pairs = [
+    ('/var/www/html/apps/files/l10n/zh_CN.json', None),
+    ('/var/www/html/apps/files/l10n/zh_CN.js', None),
+    ('/var/www/html/lib/l10n/zh_CN.json', None),
+    ('/var/www/html/lib/l10n/zh_CN.js', None),
+]
+for path, _ in pairs:
+    try:
+        t = io.open(path, encoding='utf-8').read()
+    except FileNotFoundError:
+        continue
+    for a, b in [('"在此搜索 …"', '"筛选当前列表 …"'), ('"在此搜索"', '"筛选当前列表"'), ('免费文本转文本提示', '自由文本提示')]:
+        t = t.replace(a, b)
+    io.open(path, 'w', encoding='utf-8').write(t)
+print('r9 string fixes applied')
+PYEOF"
+
 # ⑧ l10n .json/.js 改动需清 APCu（l10n 解析缓存按进程驻留）：graceful 重启
 docker exec $C apachectl graceful || true
 
