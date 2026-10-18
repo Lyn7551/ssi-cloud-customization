@@ -102,8 +102,6 @@
 		name.href = filesLink(dept.path);
 		body.appendChild(name);
 
-		var meta = el('span', 'ssispace-card-meta', dept.path);
-		body.appendChild(meta);
 
 		if (dept.subs.length > 0) {
 			var tags = el('span', 'ssispace-tags');

@@ -41,6 +41,10 @@ docker exec $C sh -c "sed -i 's/Play sound when a call started (requires Nextclo
 docker exec $C sh -c "sed -i 's/\"Play sound when a call started (requires Nextcloud Talk)\" :/\"Play sound when a call starts\" :/' $NC/apps/notifications/l10n/zh_CN.js $NC/apps/notifications/l10n/zh_CN.json"
 # ⑤ theming productName 正确键名（camelCase）：联合云等 {productName} 占位符全局生效
 docker exec -u www-data $C php $NC/occ config:app:set theming productName --value="SSI Cloud"
+# ⑦ UIUX-R9：行菜单"AI Assistant"品牌化（bundle 源串 + zh 缺译补"SSI 助手"，幂等）
+docker exec $C sh -c "sed -i 's/AI Assistant/SSI Assistant/g' $NC/custom_apps/assistant/js/assistant-fileActions.mjs 2>/dev/null || true"
+docker exec $C sh -c "grep -q 'AI Assistant' $NC/custom_apps/assistant/l10n/zh_CN.json 2>/dev/null || sed -i 's/{ \"translations\": {/&\n    \"AI Assistant\" : \"SSI 助手\",/' $NC/custom_apps/assistant/l10n/zh_CN.json"
+docker exec $C sh -c "grep -q 'AI Assistant' $NC/custom_apps/assistant/l10n/zh_CN.js 2>/dev/null || sed -i '0,/^[[:space:]]*{[[:space:]]*$/s//&\n    \"AI Assistant\" : \"SSI 助手\",/' $NC/custom_apps/assistant/l10n/zh_CN.js"
 # ⑥ 联合云 en 冠词语法："a {productName}" → "an {productName}"（新建 en l10n，不影响其他语言；UIUX-R5）
 docker exec $C sh -c 'F=/var/www/html/apps/federatedfilesharing/l10n; [ -f $F/en.js ] || cat > $F/en.js <<'"'"'EOF'"'"'
 OC.L10N.register(
